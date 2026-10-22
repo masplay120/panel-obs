@@ -4,27 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>DJ TV - Master Output OBS</title>
+  <title>DJ TV Estación Mix - Master Output OBS</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Orbitron:wght@700;900&family=Oswald:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/broadcast.css">
 </head>
 <body>
+  <!-- WIDGET OCULTO JOTFORM (HORÓSCOPO Y NOTICIAS) -->
+  <div style="display:none!important;">
+    <div id="JFWebsiteWidget-01a120be41b070008003137f1833c7dc8d78"></div>
+    <script src="https://www.jotform.com/website-widgets/embed/01a120be41b070008003137f1833c7dc8d78" defer></script>
+  </div>
+
   <div class="tv-master-lower-third">
-    <!-- Contenedor Dinámico Principal (Placa Superior) -->
+    <!-- Placa Superior Dinámica -->
     <div id="upperCard" class="upper-card hidden-card">
       <div id="cardDynamicContent"></div>
     </div>
 
-    <!-- Ticker de Noticias / RSS Inferior -->
+    <!-- Ticker Inferior -->
     <div class="news-row">
-      <div id="tickerBadge" class="news-badge">ÚLTIMO MOMENTO</div>
+      <div class="news-badge">ÚLTIMO MOMENTO</div>
       <div class="ticker-wrapper">
         <div id="tickerText" class="ticker-content"></div>
       </div>
     </div>
   </div>
 
-  <!-- Script de Conexión y Renderizado Master -->
   <script type="module" src="js/engine-obs.js"></script>
 </body>
 </html>
