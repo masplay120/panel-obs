@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ TV Estación Mix - Consola de Emisión Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+  <header class="panel-header">
+    <div class="logo-area">
+      <span class="badge-live">EN VIVO</span>
+      <h1>DJ TV Estación Mix <span>Consola Master Pro</span></h1>
+    </div>
+    <div class="actions-area">
+      <button id="btnSaveConfig" class="btn-primary">💾 Guardar y Enviar al Aire</button>
+      <a href="index.html" target="_blank" class="btn-secondary">🔗 Abrir Salida OBS</a>
+    </div>
+  </header>
+
+  <main class="panel-grid">
+    <!-- COLUMNA IZQUIERDA: MONITOR DE PROGRAMA (PREVIEW EN VIVO) -->
+    <section class="preview-section">
+      <h2>Monitor de Programa (Previa en Vivo 1920x1080)</h2>
+      <div class="monitor-container">
+        <iframe src="index.html" id="previewFrame" title="Preview OBS"></iframe>
+      </div>
+      <div class="obs-url-box">
+        <label>URL Fuente para OBS (Navegador 1920x1080):</label>
+        <input type="text" id="obsUrlInput" readonly value="">
+      </div>
+    </section>
+
+    <!-- COLUMNA DERECHA: PANELES DE ADMINISTRACIÓN Y DISEÑO -->
+    <section class="controls-section">
+      <div class="tabs">
+        <button class="tab-btn active" data-target="tab-design">🎨 Diseño & Tema</button>
+        <button class="tab-btn" data-target="tab-rotation">🔄 Rotación</button>
+        <button class="tab-btn" data-target="tab-sorteos">🎲 Sorteos & URLs</button>
+        <button class="tab-btn" data-target="tab-ads">📢 Publicidad</button>
+      </div>
+
+      <!-- PESTAÑA 1: DISEÑO Y ESTÉTICA -->
+      <div id="tab-design" class="tab-content active">
+        <h3>Paleta de Colores y Estilo</h3>
+        <div class="control-group">
+          <label>Color Principal de Tema:</label>
+          <div class="color-picker-group">
+            <button class="color-btn" style="background:#ec4899" data-color="#ec4899"></button>
+            <button class="color-btn" style="background:#f97316" data-color="#f97316"></button>
+            <button class="color-btn" style="background:#10b981" data-color="#10b981"></button>
+            <button class="color-btn" style="background:#3b82f6" data-color="#3b82f6"></button>
+            <button class="color-btn" style="background:#f59e0b" data-color="#f59e0b"></button>
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Velocidad del Ticker Inferior:</label>
+          <input type="range" id="tickerSpeedRange" min="0.5" max="3" step="0.1" value="1.2">
+        </div>
+      </div>
+
+      <!-- PESTAÑA 2: ROTACIÓN -->
+      <div id="tab-rotation" class="tab-content">
+        <h3>Modo de Reproducción al Aire</h3>
+        <div class="control-group">
+          <label><input type="radio" name="rotMode" value="consecutive" checked> Consecutivo (Saludos ➔ Quini ➔ Brinco ➔ Quiniela ➔ Horóscopo)</label>
+          <label><input type="radio" name="rotMode" value="random"> Aleatorio</label>
+          <label><input type="radio" name="rotMode" value="fixed"> Fijar una placa manual permanente</label>
+        </div>
+      </div>
+
+      <!-- PESTAÑA 3: SORTEOS Y URLs DINÁMICAS -->
+      <div id="tab-sorteos" class="tab-content">
+        <h3>Gestión de Workers y Fuentes Externas</h3>
+        <div class="control-group">
+          <label>URL Cloudflare Worker Quini 6:</label>
+          <input type="text" id="urlQuini" value="https://quini-6.fachacarlos1.workers.dev/">
+        </div>
+        <div class="control-group">
+          <label>URL Cloudflare Worker Brinco:</label>
+          <input type="text" id="urlBrinco" value="https://brinco.fachacarlos1.workers.dev/">
+        </div>
+        <div class="control-group">
+          <label>URL Cloudflare Worker Quiniela Misionera:</label>
+          <input type="text" id="urlQuiniela" value="https://quinielamisionera.fachacarlos1.workers.dev/">
+        </div>
+        <div class="control-group">
+          <label>➕ Agregar Nueva URL de Sorteo/Clima:</label>
+          <input type="text" id="urlCustom" placeholder="https://mi-nuevo-worker.workers.dev/">
+        </div>
+      </div>
+
+      <!-- PESTAÑA 4: PUBLICIDAD Y SPONSORS -->
+      <div id="tab-ads" class="tab-content">
+        <h3>Gestión de Banners Publicitarios</h3>
+        <div class="control-group">
+          <label>Tipo de Contenido:</label>
+          <select id="adType">
+            <option value="image">Imagen / Animada (GIF)</option>
+            <option value="video">Video (Sin Audio en Bucle)</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>URL del Archivo (Imagen o Video):</label>
+          <input type="text" id="adMediaUrl" placeholder="https://tuservidor.com/banner.mp4">
+        </div>
+        <div class="control-group">
+          <label>Programación Horaria:</label>
+          <select id="adSchedule">
+            <option value="247">Transmitir 24/7 en la rotación</option>
+            <option value="scheduled">Horario Específico (Ej: 09:00 a 10:00)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/panel-admin.js"></script>
+</body>
+</html>
