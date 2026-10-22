@@ -20,7 +20,7 @@
   </header>
 
   <main class="panel-grid">
-    <!-- COLUMNA IZQUIERDA: MONITOR DE PROGRAMA (PREVIEW EN VIVO) -->
+    <!-- COLUMNA IZQUIERDA: MONITOR DE PROGRAMA -->
     <section class="preview-section">
       <h2>Monitor de Programa (Previa en Vivo 1920x1080)</h2>
       <div class="monitor-container">
@@ -32,7 +32,7 @@
       </div>
     </section>
 
-    <!-- COLUMNA DERECHA: PANELES DE ADMINISTRACIÓN Y DISEÑO -->
+    <!-- COLUMNA DERECHA: PANELES DE ADMINISTRACIÓN -->
     <section class="controls-section">
       <div class="tabs">
         <button class="tab-btn active" data-target="tab-design">🎨 Diseño & Tema</button>
@@ -47,7 +47,7 @@
         <div class="control-group">
           <label>Color Principal de Tema:</label>
           <div class="color-picker-group">
-            <button class="color-btn" style="background:#ec4899" data-color="#ec4899"></button>
+            <button class="color-btn active" style="background:#ec4899" data-color="#ec4899"></button>
             <button class="color-btn" style="background:#f97316" data-color="#f97316"></button>
             <button class="color-btn" style="background:#10b981" data-color="#10b981"></button>
             <button class="color-btn" style="background:#3b82f6" data-color="#3b82f6"></button>
@@ -63,10 +63,9 @@
       <!-- PESTAÑA 2: ROTACIÓN -->
       <div id="tab-rotation" class="tab-content">
         <h3>Modo de Reproducción al Aire</h3>
-        <div class="control-group">
+        <div class="control-group" style="display:flex; flex-direction:column; gap:10px;">
           <label><input type="radio" name="rotMode" value="consecutive" checked> Consecutivo (Saludos ➔ Quini ➔ Brinco ➔ Quiniela ➔ Horóscopo)</label>
           <label><input type="radio" name="rotMode" value="random"> Aleatorio</label>
-          <label><input type="radio" name="rotMode" value="fixed"> Fijar una placa manual permanente</label>
         </div>
       </div>
 
@@ -84,10 +83,6 @@
         <div class="control-group">
           <label>URL Cloudflare Worker Quiniela Misionera:</label>
           <input type="text" id="urlQuiniela" value="https://quinielamisionera.fachacarlos1.workers.dev/">
-        </div>
-        <div class="control-group">
-          <label>➕ Agregar Nueva URL de Sorteo/Clima:</label>
-          <input type="text" id="urlCustom" placeholder="https://mi-nuevo-worker.workers.dev/">
         </div>
       </div>
 
@@ -109,13 +104,31 @@
           <label>Programación Horaria:</label>
           <select id="adSchedule">
             <option value="247">Transmitir 24/7 en la rotación</option>
-            <option value="scheduled">Horario Específico (Ej: 09:00 a 10:00)</option>
+            <option value="scheduled">Horario Específico</option>
           </select>
+        </div>
+        <!-- Campos que se muestran solo si se elige horario específico -->
+        <div class="control-group" id="timeFields" style="display:none; gap:10px; display:flex;">
+          <div style="flex:1;">
+            <label>Hora Inicio:</label>
+            <input type="time" id="adTimeStart" value="09:00">
+          </div>
+          <div style="flex:1;">
+            <label>Hora Fin:</label>
+            <input type="time" id="adTimeEnd" value="10:00">
+          </div>
         </div>
       </div>
     </section>
   </main>
 
+  <script>
+    // Mostrar u ocultar campos de hora según selección
+    document.getElementById('adSchedule').addEventListener('change', (e) => {
+      const timeBox = document.getElementById('timeFields');
+      timeBox.style.display = e.target.value === 'scheduled' ? 'flex' : 'none';
+    });
+  </script>
   <script type="module" src="js/panel-admin.js"></script>
 </body>
 </html>
